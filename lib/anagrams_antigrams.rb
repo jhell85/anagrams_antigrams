@@ -22,8 +22,9 @@ class AnagramAntigram
   def check_phrase(sentence)
     results = Array.new()
     sentence.split(" ").each do |word|
-      
-      word.sub!(/([^\s\w])/,'')
+      reverse_word = word.split('').reverse.join('')
+      reverse_word.sub!(/([^\s\w])/,'')
+      word = reverse_word.split('').reverse.join('')
       if is_english?(word) == false
         results.push(word)
       end
