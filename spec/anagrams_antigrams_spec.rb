@@ -6,6 +6,6 @@ describe('Anagram#is_english') do
 
   it ("returns true false if word is english or not") do
     word = Anagram.new("today")
-    expect(word.is_english).to(eq({:english=>1}))
+    expect(word.is_english?).to(eq(true))
   end
 end

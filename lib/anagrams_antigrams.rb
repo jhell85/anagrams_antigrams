@@ -6,8 +6,14 @@ class Anagram
     @word = word
   end
 
-  def is_english
+  def is_english?
+    english = false
     wl = WhatLanguage.new(:english)
-    wl.process_text(word)
+    if wl.process_text(word) == {:english=>1}
+      english = true
+    end
+    english
   end
+
+  
 end
