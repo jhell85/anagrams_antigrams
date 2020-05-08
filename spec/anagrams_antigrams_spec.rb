@@ -24,4 +24,9 @@ describe('AnagramAntigram#check_phrase') do
     word = AnagramAntigram.new("Hello my frnd how are you today")
     expect(word.check_phrase(word.word1)).to(eq(["frnd"]))
   end
+
+  it ("returns an empty Array for an english phrases with charcters") do
+    word = AnagramAntigram.new("Hello my frnd how are you today.")
+    expect(word.check_phrase(word.word1)).to(eq(["frnd"]))
+  end
 end
