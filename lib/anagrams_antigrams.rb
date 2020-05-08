@@ -15,10 +15,23 @@ class AnagramAntigram
     english
   end
 
-  # def is_antigram
-  #   antigram = false
+  def word2(word)
+    @word2 = word
+  end
 
-  # end
+  def check_phrase(sentence)
+    results = Array.new()
+    sentence.split(" ").each do |word|
+      if is_english?(word) == false
+        results.push(word)
+      end
+    end
+    results
+  end
+  
+  def is_anagram?
+    antigram = false
+  end
 
 
 end
