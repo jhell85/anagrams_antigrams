@@ -1,6 +1,6 @@
 require 'whatlanguage'
 
-class Anagram 
+class AnagramAntigram 
   attr_reader(:word)
   def initialize(word)
     @word = word
@@ -15,5 +15,5 @@ class Anagram
     english
   end
 
-  
+
 end
