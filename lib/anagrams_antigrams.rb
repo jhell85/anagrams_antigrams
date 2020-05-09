@@ -41,7 +41,7 @@ class AnagramAntigram
   end
 
   def is_anagram?
-    antigram = false
+    anagram = false
   end
 
 
