@@ -20,6 +20,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
+    whatlanguage (1.0.6)
 
 PLATFORMS
   ruby
@@ -27,6 +28,7 @@ PLATFORMS
 DEPENDENCIES
   pry
   rspec
+  whatlanguage
 
 BUNDLED WITH
    1.17.2

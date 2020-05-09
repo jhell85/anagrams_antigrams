@@ -3,14 +3,14 @@ require 'rspec'
 require 'anagrams_antigrams'
 
 describe('Anagram#is_english') do 
-  it ("returns true if word is english") do
+  it ("return an empty array if word is english") do
     word = AnagramAntigram.new("tomorrow")
-    expect(word.is_english?(word.word1)).to(eq(true))
+    expect(word.is_english(word.word1)).to(eq(Array.new()))
   end
 
-  it ("returns false if a word isn't english") do
-    word = AnagramAntigram.new("manana")
-    expect(word.is_english?(word.word1)).to(eq(false))
+  it ("returns a hash with keys of 'original' and 'suggestions' if a word isn't english") do
+    word = AnagramAntigram.new("Helo")
+    expect(word.is_english(word.word1)).to(eq([{:original=>"Helo", :suggestions=>["Hello", "Helot", "Help"]}]))
   end
 end
 
@@ -22,12 +22,12 @@ describe('AnagramAntigram#check_phrase') do
 
   it ("returns an Array with a words that aren't english") do
     word = AnagramAntigram.new("Hello my frind how are you today")
-    expect(word.check_phrase(word.word1)).to(eq(["frind"]))
+    expect(word.check_phrase(word.word1)).to(eq([{:original=>"frind", :suggestions=>["Friend", "friend", "frond"]}]))
   end
 
-  it ("returns an Array of words that aren't english but have incorrect punctuation inside the word") do
+  it ("returns an Array of hashes that include the original word and spelling suggestions") do
     word = AnagramAntigram.new("Hello my frnd how are you tod!ay.")
-    expect(word.check_phrase(word.word1)).to(eq(["frnd", "tod!ay"]))
+    expect(word.check_phrase(word.word1)).to(eq([{:original=>"frnd", :suggestions=>["frond", "fend", "Fronde"]}, {:original=>"tod!ay.", :suggestions=>["Tod", "Todd", "toad"]}]))
   end
 
   it ("returns an empty Array even if words have punctuation after them such as a comma period or exclamation point") do
@@ -44,10 +44,18 @@ describe('AnagramAntigram#check_phrase') do
   end
 end
 
-describe("AnagramAntigram#is_anagram") do
+describe("AnagramAntigram#is_anagram?") do
   it("method will return true for single letter words that are anagrams") do
-    word = AnagramAntigram.new("alert")
-    word.set_word2("later")
+    word = AnagramAntigram.new("later")
+    word.set_word2("alert")
+    word.check_phrase(word.word1)
+    word.check_phrase(word.word2)
+    expect(word.is_anagram?).to(eq(true))
+  end
+
+  it("method will return true for multiple letter phrases that are anagrams") do
+    word = AnagramAntigram.new("a rope ends it")
+    word.set_word2("desperation")
     word.check_phrase(word.word1)
     word.check_phrase(word.word2)
     expect(word.is_anagram?).to(eq(true))
