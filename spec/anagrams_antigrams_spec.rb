@@ -10,7 +10,7 @@ describe('Anagram#is_english') do
 
   it ("returns a hash with keys of 'original' and 'suggestions' if a word isn't english") do
     word = AnagramAntigram.new("Helo")
-    expect(word.is_english(word.word1)).to(eq([{:original=>"Helo", :suggestions=>["Hello", "Helot", "Help"]}]))
+    expect(word.is_english(word.word1)).to(eq([{:original=>"helo", :suggestions=>["hello", "helot", "help"]}]))
   end
 end
 
@@ -36,18 +36,18 @@ describe('AnagramAntigram#check_phrase') do
   end
 
   it ("method creates sentence_array1 & sentence_array2 constructors for class if the sentence has all english words ") do
-    word = AnagramAntigram.new("Wow! where did you get that? Well, I'd like to get one too.")
-    word.set_word2("Hello World!")
+    word = AnagramAntigram.new("Hi")
+    word.word2 = "Hello World!"
     word.check_phrase(word.word1)
     word.check_phrase(word.word2)
-    expect(word.sentence_array2).to(eq(["Hello", "World"]))
+    expect(word.sentence_array2).to(eq(["hello", "world"]))
   end
 end
 
 describe("AnagramAntigram#is_anagram?") do
   it("method will return true for single letter words that are anagrams") do
     word = AnagramAntigram.new("later")
-    word.set_word2("alert")
+    word.word2 = "alert"
     word.check_phrase(word.word1)
     word.check_phrase(word.word2)
     expect(word.is_anagram?).to(eq(true))
@@ -55,9 +55,36 @@ describe("AnagramAntigram#is_anagram?") do
 
   it("method will return true for multiple letter phrases that are anagrams") do
     word = AnagramAntigram.new("a rope ends it")
-    word.set_word2("desperation")
+    word.word2 = "desperation"
     word.check_phrase(word.word1)
     word.check_phrase(word.word2)
     expect(word.is_anagram?).to(eq(true))
+  end
+
+  it("method will return true phrases that are anagrams regardless of capitilzation") do
+    word = AnagramAntigram.new("A DeciMAl PoInT")
+    word.word2 = "I'm a dOt In place"
+    word.check_phrase(word.word1)
+    word.check_phrase(word.word2)
+    expect(word.is_anagram?).to(eq(true))
+  end
+
+  it("method will return false on phrases that are not anagrams") do
+    word = AnagramAntigram.new("a rope end it")
+    word.word2 = "desperation"
+    word.check_phrase(word.word1)
+    word.check_phrase(word.word2)
+    expect(word.is_anagram?).to(eq(false))
+  end
+
+end
+
+describe("AnagramAntigram#is_antigram?") do
+  it("method will return true on phrases that are antigrams") do 
+    word = AnagramAntigram.new("weird")
+    word.word2 = "smash"
+    word.check_phrase(word.word1)
+    word.check_phrase(word.word2)
+    expect(word.is_antigram?).to(eq(true))
   end
 end

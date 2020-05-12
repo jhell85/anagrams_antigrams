@@ -1,15 +1,14 @@
 require 'spellchecker'
 
 class AnagramAntigram 
-  attr_reader(:word1)
-  attr_reader(:word2)
-  attr_reader(:sentence_array2)
-  attr_reader(:sentence_array1)
+  attr_reader :word1, :sentence_array1, :sentence_array2 
+  attr_accessor :word2
   def initialize(word1)
     @word1 = word1
   end
 
   def is_english(sentence)
+    sentence.downcase!
     output = Array.new
     results = Spellchecker.check(sentence, dictionary='en')
     results.each do |result|
@@ -21,11 +20,8 @@ class AnagramAntigram
     output
   end
 
-  def set_word2(word)
-    @word2 = word
-  end
-
   def check_phrase(sentence)
+    sentence
     phrase_array = Array.new
     return_array = is_english(sentence)
     if return_array == Array.new
@@ -53,4 +49,7 @@ class AnagramAntigram
   anagram
   end
 
+  def is_antigram?
+    antigram = false
+  end
 end
