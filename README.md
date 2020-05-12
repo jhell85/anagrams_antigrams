@@ -30,7 +30,7 @@ cd desktop
  cd ~/Desktop
  ```
 
- 3. in terminal type '_git clone {link to repository}_ '
+ 3. in terminal type '_git clone https://github.com/jhell85/anagrams_antigrams.git_ '
 
 ```sh
 git clone Link-Here
