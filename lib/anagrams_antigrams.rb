@@ -53,17 +53,18 @@ class AnagramAntigram
     antigram = false
     compared_sentence1 = 
     compared_sentence2 = 
-    if !sentence_array1.join(' ').gsub!(/(?:(?!\n)\s)/i,'')
+    white_space = /(?:(?!\n)\s)/i
+    if !sentence_array1.join(' ').gsub!(white_space,'')
       compared_sentence1 = sentence_array1 + [' ']
-      compared_sentence1 = compared_sentence1.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+      compared_sentence1 = compared_sentence1.join(' ').gsub!(white_space,'').split('')
     else
-      compared_sentence1 = sentence_array1.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+      compared_sentence1 = sentence_array1.join(' ').gsub!(white_space,'').split('')
     end
-    if !sentence_array2.join(' ').gsub!(/(?:(?!\n)\s)/i,'')
+    if !sentence_array2.join(' ').gsub!(white_space,'')
       compared_sentence2 = sentence_array2 + [' ']
-      compared_sentence2 = compared_sentence2.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+      compared_sentence2 = compared_sentence2.join(' ').gsub!(white_space,'').split('')
     else
-      compared_sentence2 = sentence_array2.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+      compared_sentence2 = sentence_array2.join(' ').gsub!(white_space,'').split('')
     end
     compared_sentence1 = compared_sentence1 - compared_sentence2
     compared_sentence2 = compared_sentence2 - compared_sentence1
