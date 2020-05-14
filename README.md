@@ -33,7 +33,7 @@ cd desktop
  3. in terminal type '_git clone https://github.com/jhell85/anagrams_antigrams.git_ '
 
 ```sh
-git clone Link-Here
+git clone https://github.com/jhell85/anagrams_antigrams.git
 ```
 
 4. navigate to the new folder that was created on your desk
@@ -41,24 +41,16 @@ git clone Link-Here
 cd folder name
 ```
 
-5. run npm install
+5. run bundle 
+
 ```sh
-npm install
-```
-6. run development server
-```sh
-npm run start
+  bundle
 ```
 
-7. edit files in '/src' to make changes to the project.
+6. run rspec to see the passing tests for the program
 
-8. remove .git delete this projects commit history
 ```sh
-rm -rf .git
-```
-9. start your new git repository 
-```sh
-git init
+  rspec
 ```
 
 
