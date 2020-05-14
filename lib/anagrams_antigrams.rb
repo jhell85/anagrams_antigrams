@@ -51,11 +51,23 @@ class AnagramAntigram
 
   def is_antigram?
     antigram = false
-    compared_sentence1 = sentence_array2.join('').split('') - sentence_array1.join('').split('')
-    compared_sentence2 = sentence_array1.join('').split('') - sentence_array2.join('').split('')
-    compared_sentence1 = compared_sentence1.join('').split(" ")
-    compared_sentence1 = compared_sentence2.join('').split(" ")
-    if (compared_sentence1 == sentence_array1 || compared_sentence2 == sentence_array2)
+    compared_sentence1 = 
+    compared_sentence2 = 
+    if !sentence_array1.join(' ').gsub!(/(?:(?!\n)\s)/i,'')
+      compared_sentence1 = sentence_array1 + [' ']
+      compared_sentence1 = compared_sentence1.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+    else
+      compared_sentence1 = sentence_array1.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+    end
+    if !sentence_array2.join(' ').gsub!(/(?:(?!\n)\s)/i,'')
+      compared_sentence2 = sentence_array2 + [' ']
+      compared_sentence2 = compared_sentence2.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+    else
+      compared_sentence2 = sentence_array2.join(' ').gsub!(/(?:(?!\n)\s)/i,'').split('')
+    end
+    compared_sentence1 = compared_sentence1 - compared_sentence2
+    compared_sentence2 = compared_sentence2 - compared_sentence1
+    if (compared_sentence1.join('') == sentence_array1.join('') && compared_sentence2.join('') == sentence_array2.join(''))
       antigram = true
     end
     antigram
