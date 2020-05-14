@@ -51,5 +51,13 @@ class AnagramAntigram
 
   def is_antigram?
     antigram = false
+    compared_sentence1 = sentence_array2.join('').split('') - sentence_array1.join('').split('')
+    compared_sentence2 = sentence_array1.join('').split('') - sentence_array2.join('').split('')
+    compared_sentence1 = compared_sentence1.join('').split(" ")
+    compared_sentence1 = compared_sentence2.join('').split(" ")
+    if (compared_sentence1 == sentence_array1 || compared_sentence2 == sentence_array2)
+      antigram = true
+    end
+    antigram
   end
 end
