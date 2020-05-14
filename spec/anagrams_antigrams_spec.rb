@@ -106,7 +106,7 @@ describe("AnagramAntigram#is_antigram?") do
 
   it("method will return false on phrases that aren't antigrams") do 
     word = AnagramAntigram.new("so weird")
-    word.word2 = "smash"
+    word.word2 = "smash that"
     word.check_phrase(word.word1)
     word.check_phrase(word.word2)
     expect(word.is_antigram?).to(eq(false))
